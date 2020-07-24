@@ -19,7 +19,7 @@ char hostString[16] = {0};
 ESP8266WebServer server(80);
 
 #define NUM_LEDS 25
-#define DATA_PIN 0
+#define DATA_PIN 2
 
 CRGB leds[NUM_LEDS];
 

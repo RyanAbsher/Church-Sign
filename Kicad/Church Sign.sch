@@ -146,15 +146,10 @@ Wire Wire Line
 	4800 2800 5100 2800
 Wire Wire Line
 	4800 2800 4800 2850
-NoConn ~ 5100 2900
 Text Label 4850 3300 2    50   ~ 0
 LED_DATA
 Wire Wire Line
 	4850 3300 5000 3300
-Wire Wire Line
-	5000 3300 5000 3000
-Wire Wire Line
-	5000 3000 5100 3000
 $Comp
 L Connector:Conn_01x03_Male J2
 U 1 1 5F1B2BD8
@@ -285,4 +280,9 @@ Wire Wire Line
 	5750 2800 5750 2900
 Wire Wire Line
 	5750 2900 5600 2900
+Wire Wire Line
+	5000 2900 5100 2900
+Wire Wire Line
+	5000 2900 5000 3300
+NoConn ~ 5100 3000
 $EndSCHEMATC
