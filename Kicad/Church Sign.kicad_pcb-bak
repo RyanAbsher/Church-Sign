@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 6)
+    (drawings 0)
     (tracks 54)
     (zones 0)
     (modules 8)
@@ -419,13 +419,6 @@
     (pad 2 thru_hole circle (at 3.81 0 90) (size 2.49936 2.49936) (drill 1.00076) (layers *.Cu *.Mask)
       (net 1 +5V))
   )
-
-  (gr_circle (center 155 85) (end 157.5 85) (layer Edge.Cuts) (width 0.15))
-  (gr_circle (center 115 85) (end 117.5 85) (layer Edge.Cuts) (width 0.15))
-  (gr_line (start 110 90) (end 110 55) (layer Edge.Cuts) (width 0.2))
-  (gr_line (start 160 90) (end 110 90) (layer Edge.Cuts) (width 0.2))
-  (gr_line (start 160 55) (end 160 90) (layer Edge.Cuts) (width 0.2))
-  (gr_line (start 110 55) (end 160 55) (layer Edge.Cuts) (width 0.2))
 
   (segment (start 142 65) (end 144.625 62.375) (width 1) (layer F.Cu) (net 1))
   (segment (start 139.5 65) (end 142 65) (width 1) (layer F.Cu) (net 1))
