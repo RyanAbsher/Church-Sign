@@ -1,15 +1,41 @@
-# Church Sign
- Service status sign for my church
- 
+# Church Sign Controller
+
 ## Introduction
-My church is divided into two seperate buildings, the main sanctuary / fellowship hall, and a smaller building which hosts the nursery and classrooms. Our services don't follow a set schedule, so the people in the other building have no idea about what is going on in the main building. I decide to rememdy that with some WiFi connected status signs.
+The **Church Sign Controller** is an ESP32-based wireless system designed to synchronize service status across multiple church buildings. This system allows a user in the main sanctuary to update the status of three remote signs in the nursery or classrooms, ensuring everyone is informed about the progress of the service.
 
-Someone in the main building will use the [controller](https://github.com/RyanAbsher/Church-Sign-Controller) to change the condition of the signs in the other building. There are 4 possible states: Off, Green, Yellow, and Red. Green means that the service is on-going, yellow means that things are wrapping up, and red means indicated that the service has completed.
+## System Overview
+The system utilizes the **ESP-NOW** protocol for communication between the controller and the signs. It supports four distinct states to communicate service progress:
 
-## Hardware
-The hardware for this project is very simple. The sign is based around an ESP8266 ESP-01 board, and there is a 4x2 2.54mm header on the board to allow for simple removal of the ESP-01 for programming. It is fed 5V from an external power adapter, and there is a 3V3 regulator to provide power for the ESP-01. The LEDs are the ubiquitous WS2812b addressable strips, commonly referred to as "NeoPixels", although these are not branded. I printed the cases out of PLA that would match the wall paint in each room. There is a channel running around the inside wall that fits the LED strip. The sideways mounting of the LEDs along with a piece of white acrylic covering the top provide a solid diffuse glow to the sign.
+* **Green:** Service is in progress.
+* **Yellow:** Service is wrapping up (e.g., the band is on stage).
+* **Red:** Service is over.
+* **Off:** System is idle.
 
-## Software
-The software was written using the Arduino IDE. Each sign uses mDNS to brodcast it's existence on the WiFi network. The controller scans the network for available signs.
+---
 
-When powered on, the sign will search for the local WiFi network and will attempt to connect. If successful, the sign will rapidly flash in succession: red, green, blue. It will then black out and wait for comamnds from the controller. If unsuccessful, if will flash red, indicating a fault condition.
+## Hardware Specifications
+
+### The Controller
+* **Module:** Built around an ESP32 with a touch display.
+* **Interface:** Features an integrated LCD touchscreen for state selection.
+* **Power:** Battery-powered with a dedicated wake button.
+* **Power Management:** Enters sleep mode after 5 seconds of inactivity to conserve battery.
+
+### The Signs
+* **Module:** Based on ESP32 modules.
+* **LEDs:** 12 WS2812B addressable LEDs per sign.
+* **Power:** Powered by a 5V external power supply.
+
+---
+
+## Functional Behavior
+
+### Controller GUI
+* **Monitoring:** The screen is divided into three sections to show the current state, color, and communication status (including errors) for each sign.
+* **Controls:** Includes four state buttons and a full-width "Save" button to store the current state in the controller's memory.
+* **Sync:** All signs are updated to the same state simultaneously.
+
+### Sign Animation & Logic
+* **Visual Alerts:** When switching to Green, Yellow, or Red, the signs perform a flashing sequence before turning solid to ensure the change is noticed.
+* **Idle Transition:** Switching to "Off" turns the LEDs off immediately without a flash pattern.
+* **Safety Timeout:** Signs automatically turn off if they remain active for more than 8 hours.
